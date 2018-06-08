@@ -361,7 +361,7 @@ BUF_SIZE         :B U F '_' S I Z E ;
 // to processing IFILEs only. We end the special IFILE mode when we are done
 // here.
 // It appears that this mode can access DQ_STRING and SQ_STRING in the
-// default lexer mode. Interesting. IWS is needed as we are well below the
+// default lexer mode. Interesting. I_WS is needed as we are well below the
 // default WS rule.
 // We need I_WS and I_COMMENT rules here as there is/can be whitespace and
 // comments in the tnsnames.ora's IFILE parameters. (I think!)
@@ -371,7 +371,6 @@ mode IFILE_MODE ;
 I_EQUAL         : '=' ;
 I_STRING        : (DQ_STRING | ISQ_STRING | IUQ_STRING) -> popMode ;
 ISQ_STRING      : S_QUOTE (~'\'')* S_QUOTE ;
-//IUQ_STRING      :  ~["'=\n\r]*? NL ;
 IUQ_STRING      :  (~["'=])*? NL ;
 I_WS            : [ \t\r\n]+ -> skip  ;
 I_COMMENT       : '#' (.)*? NL  -> skip  ;
